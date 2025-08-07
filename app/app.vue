@@ -1,6 +1,16 @@
+<script setup lang="ts">
+// Set up global styles and meta
+useHead({
+  title: 'RR Chocolatte',
+  meta: [
+    { name: 'description', content: 'Premium chocolate experience with RR Chocolatte' }
+  ]
+})
+</script>
+
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <NuxtPage />
   </div>
 </template>
