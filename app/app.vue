@@ -3,9 +3,9 @@ import '../assets/css/main.css'
 
 // Set up global styles and meta
 useHead({
-  title: 'RR Chocolatte',
+  title: 'RR Chocolatte Recruitment',
   meta: [
-    { name: 'description', content: 'Premium chocolate experience with RR Chocolatte' }
+    { name: 'description', content: 'Join our sweet journey - Career opportunities at RR Chocolatte' }
   ]
 })
 </script>

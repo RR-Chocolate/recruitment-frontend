@@ -64,29 +64,31 @@
         <template v-else>
           <!-- Public Landing Page -->
           <div class="text-center">
-            <Icon name="lucide:heart" class="mx-auto h-12 w-12 text-indigo-600" />
-            <h2 class="mt-2 text-3xl font-extrabold text-gray-900">Welcome to RR Chocolatte</h2>
+            <Icon name="lucide:briefcase" class="mx-auto h-12 w-12 text-blue-600" />
+            <h2 class="mt-2 text-3xl font-extrabold text-gray-900">Welcome to RR Chocolatte Careers</h2>
             <p class="mt-4 text-lg text-gray-600">
-              Discover the finest chocolates and create unforgettable moments.
+              Join our sweet journey and discover exciting career opportunities at RR Chocolatte.
             </p>
             <div class="mt-6 flex justify-center space-x-4">
-              <NuxtLink to="/auth/sign-up"
-                class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md text-sm font-medium">
-                Get Started
+              <NuxtLink to="/applicant/jobs"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-sm font-medium">
+                Browse Jobs
               </NuxtLink>
               <NuxtLink to="/auth/sign-in"
-                class="bg-white hover:bg-gray-50 text-indigo-600 border border-indigo-600 px-6 py-3 rounded-md text-sm font-medium">
+                class="bg-white hover:bg-gray-50 text-blue-600 border border-blue-600 px-6 py-3 rounded-md text-sm font-medium">
                 Sign In
               </NuxtLink>
             </div>
 
             <!-- Demo Credentials -->
-            <div class="mt-8 bg-yellow-50 border border-yellow-200 rounded-md p-4 max-w-md mx-auto">
+            <div class="mt-8 bg-yellow-50 border border-yellow-200 rounded-md p-4 max-w-lg mx-auto">
               <h3 class="text-sm font-medium text-yellow-800">Demo Credentials</h3>
-              <p class="mt-1 text-sm text-yellow-700">
-                Email: <code class="bg-yellow-100 px-1 rounded">test@example.com</code><br>
-                Password: <code class="bg-yellow-100 px-1 rounded">password123</code>
-              </p>
+              <div class="mt-2 text-sm text-yellow-700 space-y-1">
+                <p><strong>Recruiter:</strong> <code class="bg-yellow-100 px-1 rounded">recruiter@rr.com</code> / <code
+                    class="bg-yellow-100 px-1 rounded">recruiter123</code></p>
+                <p><strong>Applicant:</strong> <code class="bg-yellow-100 px-1 rounded">applicant@example.com</code> /
+                  <code class="bg-yellow-100 px-1 rounded">applicant123</code></p>
+              </div>
             </div>
           </div>
         </template>
@@ -113,6 +115,12 @@ onMounted(() => {
         const userData = JSON.parse(storedUser)
         if (userData.isAuthenticated) {
           user.value = userData
+          // Redirect based on user role
+          if (userData.role === 'recruiter') {
+            navigateTo('/recruiter/dashboard')
+          } else if (userData.role === 'applicant') {
+            navigateTo('/applicant/jobs')
+          }
         }
       } catch {
         // Invalid stored data, remove it

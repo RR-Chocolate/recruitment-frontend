@@ -70,9 +70,11 @@
 <script setup lang="ts">
 // Dummy user data for testing
 const dummyUsers = [
-  { email: 'test@example.com', password: 'password123', name: 'Test User' },
-  { email: 'admin@chocolatte.com', password: 'admin123', name: 'Admin User' },
-  { email: 'user@demo.com', password: 'demo123', name: 'Demo User' }
+  { email: 'test@example.com', password: 'password123', name: 'Test User', role: 'applicant' },
+  { email: 'admin@chocolatte.com', password: 'admin123', name: 'Admin User', role: 'recruiter' },
+  { email: 'user@demo.com', password: 'demo123', name: 'Demo User', role: 'applicant' },
+  { email: 'recruiter@rr.com', password: 'recruiter123', name: 'HR Recruiter', role: 'recruiter' },
+  { email: 'applicant@example.com', password: 'applicant123', name: 'Job Seeker', role: 'applicant' }
 ]
 
 const form = ref({
@@ -107,16 +109,21 @@ const handleSignIn = async () => {
         localStorage.setItem('user', JSON.stringify({
           email: user.email,
           name: user.name,
+          role: user.role,
           isAuthenticated: true
         }))
       }
 
-      // Redirect to dashboard or home after 2 seconds
+      // Redirect based on user role
       setTimeout(async () => {
-        await navigateTo('/')
+        if (user.role === 'recruiter') {
+          await navigateTo('/recruiter/dashboard')
+        } else {
+          await navigateTo('/applicant/jobs')
+        }
       }, 2000)
     } else {
-      error.value = 'Invalid email or password. Try: test@example.com / password123'
+      error.value = 'Invalid email or password. Try: recruiter@rr.com / recruiter123 or applicant@example.com / applicant123'
     }
   } catch {
     error.value = 'An error occurred. Please try again.'

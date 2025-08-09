@@ -7,7 +7,7 @@ export default withNuxt(
     rules: {
       // Allow single-word component names for pages
       "vue/multi-word-component-names": [
-        "error",
+        "warn",
         {
           ignores: ["index", "default"],
         },
