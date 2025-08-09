@@ -1,7 +1,16 @@
+import tailwindcss from "@tailwindcss/vite";
+// import tsconfigPaths from "vite-tsconfig-paths";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+
+  // plugins: [
+  //   tsconfigPaths({
+  //     root: "./",
+  //   }),
+  // ],
 
   // Enable file-based routing
   pages: true,
@@ -14,8 +23,11 @@ export default defineNuxtConfig({
     autoImport: true,
   },
 
+  vite: {
+    plugins: [tailwindcss()],
+  },
+
   modules: [
-    "@nuxtjs/tailwindcss",
     "@nuxt/eslint",
     "@nuxt/fonts",
     "@nuxt/icon",
@@ -25,7 +37,7 @@ export default defineNuxtConfig({
   ],
 
   // CSS framework
-  css: [],
+  // css: ["./assets/css/main.css"],
 
   // App configuration
   app: {
